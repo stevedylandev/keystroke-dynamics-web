@@ -175,7 +175,7 @@
 
   .idle {
     font-size: 12px;
-    color: #666;
+    color: #888;
   }
 
   .stats-bar {
@@ -240,7 +240,7 @@
   .json-output {
     font-size: 12px;
     line-height: 1.5;
-    color: #ccc;
+    color: #ffffff;
     border: 1px solid #333;
     padding: 1rem;
     overflow-x: auto;

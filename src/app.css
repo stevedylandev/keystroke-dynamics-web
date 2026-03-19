@@ -24,6 +24,8 @@
 html {
   background: #121113;
   color: #ffffff;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 html::-webkit-scrollbar {
@@ -37,7 +39,8 @@ body {
   align-items: center;
   gap: 1.5rem;
   min-height: 100vh;
-  max-width: 700px;
+  max-width: 900px;
+  padding: 0 2rem;
   margin: auto;
 }
 
@@ -54,6 +57,25 @@ button {
 a {
   background: #121113;
   color: #ffffff;
+}
+
+button:hover,
+a:hover {
+  opacity: 0.7;
+}
+
+input,
+textarea {
+  background: #121113;
+  color: #ffffff;
+  border: 1px solid white;
+  padding: 4px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 400px;
+  padding: 6px;
 }
 
 @media (max-width: 480px) {
