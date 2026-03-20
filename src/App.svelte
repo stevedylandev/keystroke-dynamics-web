@@ -3,6 +3,7 @@
   import TabBar from './lib/components/TabBar.svelte';
   import CapturePanel from './lib/components/CapturePanel.svelte';
   import ProfileSummary from './lib/components/ProfileSummary.svelte';
+  import ProfileManager from './lib/components/ProfileManager.svelte';
 
   let pendingKeys = new Map();
   let lastCompleted = null;
@@ -136,6 +137,7 @@
     {/if}
   {:else if activeTab === 'profile'}
     <ProfileSummary {digraphs} metadata={sessionMetadata} />
+    <ProfileManager {digraphs} metadata={sessionMetadata} />
   {:else if activeTab === 'compare'}
     <div class="placeholder">
       <p>session comparison</p>
