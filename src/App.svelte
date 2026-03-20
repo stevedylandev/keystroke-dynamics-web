@@ -5,6 +5,7 @@
   import ProfileSummary from './lib/components/ProfileSummary.svelte';
   import ProfileManager from './lib/components/ProfileManager.svelte';
   import ComparisonView from './lib/components/ComparisonView.svelte';
+  import HumannessView from './lib/components/HumannessView.svelte';
 
   let pendingKeys = new Map();
   let lastCompleted = null;
@@ -142,10 +143,7 @@
   {:else if activeTab === 'compare'}
     <ComparisonView {digraphs} />
   {:else if activeTab === 'humanness'}
-    <div class="placeholder">
-      <p>human-ness analysis</p>
-      <span class="placeholder-sub">coming in step 4</span>
-    </div>
+    <HumannessView {digraphs} metadata={sessionMetadata} />
   {/if}
 </main>
 
@@ -182,23 +180,4 @@
     padding: 4px 8px;
   }
 
-  .placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 2rem;
-    border: 1px dashed #333;
-    gap: 0.5rem;
-  }
-
-  .placeholder p {
-    font-size: 14px;
-    color: #888;
-  }
-
-  .placeholder-sub {
-    font-size: 11px;
-    color: #555;
-  }
 </style>
