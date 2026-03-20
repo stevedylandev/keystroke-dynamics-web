@@ -1,5 +1,5 @@
 import type { RawDigraph, MetricStats, DigraphAggregation } from './types';
-import { std } from './utils';
+import { std, filterOutliers } from './utils';
 
 function normalizeKey(key: string): string {
   if (key === ' ') return '␣';
@@ -68,12 +68,12 @@ export function aggregateDigraphs(digraphs: RawDigraph[]): DigraphAggregation[] 
     const agg: DigraphAggregation = {
       normalizedKeys,
       count: group.length,
-      holdTime1: computeMetricStats(group.map((d) => d.holdTime1)),
-      holdTime2: computeMetricStats(group.map((d) => d.holdTime2)),
-      pressPress: computeMetricStats(group.map((d) => d.pressPress)),
-      releaseRelease: computeMetricStats(group.map((d) => d.releaseRelease)),
-      pressRelease: computeMetricStats(group.map((d) => d.pressRelease)),
-      releasePress: computeMetricStats(group.map((d) => d.releasePress)),
+      holdTime1: computeMetricStats(filterOutliers(group.map((d) => d.holdTime1))),
+      holdTime2: computeMetricStats(filterOutliers(group.map((d) => d.holdTime2))),
+      pressPress: computeMetricStats(filterOutliers(group.map((d) => d.pressPress))),
+      releaseRelease: computeMetricStats(filterOutliers(group.map((d) => d.releaseRelease))),
+      pressRelease: computeMetricStats(filterOutliers(group.map((d) => d.pressRelease))),
+      releasePress: computeMetricStats(filterOutliers(group.map((d) => d.releasePress))),
     };
     aggregations.push(agg);
   }

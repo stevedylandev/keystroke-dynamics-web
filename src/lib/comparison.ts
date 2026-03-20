@@ -9,7 +9,8 @@ const METRIC_KEYS = [
   'releasePress',
 ] as const;
 
-const EPSILON = 0.001;
+const MAX_METRIC_DISTANCE = 3.0;
+const MIN_STD_FALLBACK = 15.0;
 
 export function compareSession(
   sessionAggs: DigraphAggregation[],
@@ -36,13 +37,11 @@ export function compareSession(
       const profileMean = profileAgg[key].mean;
       const profileStd = profileAgg[key].std;
 
-      let distance: number;
-      if (profileStd < EPSILON) {
-        const fallback = Math.max(Math.abs(profileMean) * 0.1, 1.0);
-        distance = Math.abs(sessionMean - profileMean) / fallback;
-      } else {
-        distance = Math.abs(sessionMean - profileMean) / profileStd;
-      }
+      const divisor = Math.max(profileStd, MIN_STD_FALLBACK);
+      const distance = Math.min(
+        Math.abs(sessionMean - profileMean) / divisor,
+        MAX_METRIC_DISTANCE,
+      );
 
       digraphDistance += distance;
       digraphMetrics++;
