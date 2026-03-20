@@ -4,6 +4,7 @@
   import CapturePanel from './lib/components/CapturePanel.svelte';
   import ProfileSummary from './lib/components/ProfileSummary.svelte';
   import ProfileManager from './lib/components/ProfileManager.svelte';
+  import ComparisonView from './lib/components/ComparisonView.svelte';
 
   let pendingKeys = new Map();
   let lastCompleted = null;
@@ -139,10 +140,7 @@
     <ProfileSummary {digraphs} metadata={sessionMetadata} />
     <ProfileManager {digraphs} metadata={sessionMetadata} />
   {:else if activeTab === 'compare'}
-    <div class="placeholder">
-      <p>session comparison</p>
-      <span class="placeholder-sub">coming in step 3</span>
-    </div>
+    <ComparisonView {digraphs} />
   {:else if activeTab === 'humanness'}
     <div class="placeholder">
       <p>human-ness analysis</p>
