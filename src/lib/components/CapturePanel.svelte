@@ -1,8 +1,11 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import StatsBar from './StatsBar.svelte';
 
   export let digraphs = [];
   export let typedText = '';
+
+  const dispatch = createEventDispatcher();
 
   let copied = false;
 
@@ -33,6 +36,7 @@
   bind:value={typedText}
   placeholder="start typing..."
   rows="4"
+  on:paste={(e) => dispatch('paste', e)}
 ></textarea>
 
 {#if digraphs.length > 0}
